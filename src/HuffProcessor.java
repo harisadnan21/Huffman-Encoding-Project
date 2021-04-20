@@ -72,7 +72,7 @@ public class HuffProcessor {
 		HuffNode current = root;
 		// out.writeBits(BITS_PER_INT,magic);
 		while (true){
-			int bits = in.readBits(BITS_PER_WORD);
+			int bits = in.readBits(1);
 			if (bits == -1) {
 				throw new HuffException("bad input, no PSEUDO_EOF");
 			}
@@ -112,10 +112,9 @@ public class HuffProcessor {
 		int[] arr = new int[ALPH_SIZE + 1];
 		while(true){
 			int val = in.readBits(BITS_PER_WORD);
-			arr[val] += 1;
 			if(val==-1) {
-				break;
-			}
+				break;}
+			arr[val] += 1;
 		}
 		arr[PSEUDO_EOF] = 1;
 		return arr;
